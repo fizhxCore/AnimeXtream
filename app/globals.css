@@ -37,3 +37,12 @@ body {
   display: none;
 }
 
+.episode-btn {
+  background-color: var(--surface);
+  transition: background-color 0.15s, color 0.15s;
+}
+.episode-btn:hover {
+  background-color: var(--accent);
+  color: var(--bg);
+}
+
