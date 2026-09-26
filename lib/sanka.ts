@@ -19,7 +19,15 @@ async function sankaFetch(path: string, revalidateSeconds: number) {
 
   for (const base of bases) {
     try {
-      const res = await fetch(`${base}${path}`, { next: { revalidate: revalidateSeconds } });
+      const res = await fetch(`${base}${path}`, {
+        next: { revalidate: revalidateSeconds },
+        headers: {
+          "User-Agent":
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36",
+          Accept: "application/json",
+          Referer: "https://www.sankavollerei.web.id/",
+        },
+      });
       if (!res.ok) throw new Error(`Sanka API balas status ${res.status}`);
       const json = await res.json();
       if (!json.ok) throw new Error(json.message || "Sanka API balas error");
